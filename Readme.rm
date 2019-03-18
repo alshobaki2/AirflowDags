@@ -13,6 +13,5 @@ and in 'val' use json file contains the token access for FB api:
 
 { "access_token": "xxxx", 
   "ad_account_id" : "act_xxxx", 
-  "app_secret" : "xxxxx",
-  "app_id": "xxxxx"} 
+ } 
  
