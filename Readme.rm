@@ -1,0 +1,18 @@
+
+
+To run this DAG you need the following:
+
+
+1- Install Facebook Lib (facebook_business) on python where Airflow installed. 
+2- DB table to save the api output (call it 'monthly_cost' ) 
+3- Create a connection for db from admin -> connctions from airflow UI, conn_id = airflow
+(the db should be postgres since PostgresHook imported, otherwise , code should be modified )
+4- create a new variable from admin -> variables from airflow UI, 
+'key' = facebook_auth
+and in 'val' use json file contains the token access for FB api:
+
+{ "access_token": "xxxx", 
+  "ad_account_id" : "act_xxxx", 
+  "app_secret" : "xxxxx",
+  "app_id": "xxxxx"} 
+ 
