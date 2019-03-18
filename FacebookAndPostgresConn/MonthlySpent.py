@@ -15,7 +15,7 @@ from facebook_business.api import FacebookAdsApi
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2019, 1, 1),
+    'start_date': datetime(2019, 2, 1),
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,
@@ -42,12 +42,12 @@ def monthly_spent(TaskName , ds, prev_ds, **kwargs  ):
     facebook = Variable.get("facebook_auth", deserialize_json=True)
     access_token =  facebook["access_token"]
     ad_account_id =  facebook["ad_account_id"]  
-    app_secret = facebook["app_secret"]  
-    app_id = facebook["app_id"]   
     FacebookAdsApi.init(access_token=access_token)
-    fields = [ 'spend', 'account_id', ]
+
     fromDate = prev_ds
     toDate = (datetime.strptime(ds, '%Y-%m-%d') + timedelta(days=-1)).strftime('%Y-%m-%d') 
+
+    fields = [ 'spend', 'account_id', ]
     params = { 'level': 'account', 'time_range': {'since': fromDate ,'until': toDate },}
     spendrows = AdAccount(ad_account_id).get_insights(    fields=fields,    params=params,)
 
